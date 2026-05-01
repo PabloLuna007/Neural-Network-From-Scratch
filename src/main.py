@@ -35,11 +35,16 @@ class Neural_Net():
             loss += squared_difference
 
     def adaptive_step_size(self):
-        pass
+        gt = 0
+        for i in range(0,len(self.predicted)):
+            result = np.fabs(self.predicted)
+            gt += result
+
+        return (1/(1+gy))
     
     def update_weights(self,old_weight,step_size,gradient):
-        pass
-
+        for i in range(0,len(self.weights)):
+            self.weights[i] = old_weight - (step_size*gradient)
 
 neural = Neural_Net()
 neural.init_actual(np.sin,0,20)
