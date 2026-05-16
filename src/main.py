@@ -11,9 +11,12 @@ class Neural_Net():
         self.predicted = []
 
     def init_weights(self,hidden_unit_num):
-        for i in range(hidden_unit_num):
-            random_weight = np.random.randint(1,100)
-            self.weights.append(random_weight)
+        with open("weights.txt", "w") as file: 
+            for i in range(hidden_unit_num):
+                random_weight = np.random.randint(-100,100)
+                self.weights.append(random_weight)
+                file.write(str(random_weight))
+                file.write("\n")
 
     def init_actual(self,function,low,high):
         for i in range(low,high):
@@ -47,7 +50,4 @@ class Neural_Net():
             self.weights[i] = old_weight - (step_size*gradient)
 
 neural = Neural_Net()
-neural.init_actual(np.sin,0,20)
-neural.init_weights()
-print(neural.weights,neural.actual)
-
+neural.init_weights(24)
